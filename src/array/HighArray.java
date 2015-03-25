@@ -1,8 +1,8 @@
 package array;
 
 public class HighArray {
-    private int[] items;
-    private int size = 0;
+    protected int[] items;
+    protected int size = 0;
 
     public HighArray(int size) {
         items = new int[size];

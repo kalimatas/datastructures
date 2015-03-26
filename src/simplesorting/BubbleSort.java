@@ -35,10 +35,4 @@ class ArrayBub extends HighArray {
             }
         }
     }
-
-    void swap(int first, int second) {
-        int tmp = items[first];
-        items[first] = items[second];
-        items[second] = tmp;
-    }
 }

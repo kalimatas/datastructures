@@ -35,6 +35,12 @@ public class HighArray {
         return false;
     }
 
+    public void swap(int first, int second) {
+        int tmp = items[first];
+        items[first] = items[second];
+        items[second] = tmp;
+    }
+
     public void display() {
         for (int i = 0; i < size; i++) {
             System.out.printf("%d ", items[i]);

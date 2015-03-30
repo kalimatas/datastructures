@@ -26,7 +26,7 @@ public class QueueArray<E> {
         size++;
     }
 
-    public E delete() {
+    public E remove() {
         if (isEmpty())
             throw new IllegalStateException("Queue is empty");
 

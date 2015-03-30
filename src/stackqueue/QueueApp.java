@@ -11,9 +11,9 @@ public class QueueApp {
 
         System.out.println("size: " + queue.size());
 
-        System.out.println("deleted: " + queue.delete());
-        System.out.println("deleted: " + queue.delete());
-        System.out.println("deleted: " + queue.delete());
+        System.out.println("deleted: " + queue.remove());
+        System.out.println("deleted: " + queue.remove());
+        System.out.println("deleted: " + queue.remove());
 
         queue.insert(45);
         queue.insert(55);

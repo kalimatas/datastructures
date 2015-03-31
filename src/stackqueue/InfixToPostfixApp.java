@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InfixToPostfixApp {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         System.out.print("Enter expression: ");
         String input = getString();
 
@@ -14,6 +14,9 @@ public class InfixToPostfixApp {
 
         System.out.println();
         System.out.println("Postfix: " + postfix);
+
+        PostfixEvaluater posEv = new PostfixEvaluater(postfix);
+        System.out.println("Result: " + posEv.evaluate());
     }
 
     public static String getString() throws IOException {

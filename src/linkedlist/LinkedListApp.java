@@ -19,5 +19,17 @@ public class LinkedListApp {
         System.out.println("20 is in the list: " + list.contains(20));
 
         list.display();
+
+        System.out.println("DoublyEndedLinkedList");
+
+        DoublyEndedLinkedList<Integer> dList = new DoublyEndedLinkedList<Integer>();
+        dList.insertFirst(10);
+        dList.insertFirst(20);
+        dList.insertFirst(30);
+        dList.insertLast(40);
+
+        dList.display();
+
+        dList.deleteFirst();
     }
 }

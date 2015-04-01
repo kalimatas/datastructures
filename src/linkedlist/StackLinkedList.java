@@ -18,7 +18,7 @@ public class StackLinkedList<E> {
     }
 
     public boolean isEmpty() {
-        return size == 0;
+        return items.isEmpty();
     }
 
     public int size() {

@@ -31,5 +31,18 @@ public class LinkedListApp {
         dList.display();
 
         dList.deleteFirst();
+
+        System.out.println("SortedList");
+
+        SortedList<Integer> sList = new SortedList<Integer>();
+        sList.insert(20);
+        sList.insert(10);
+        sList.insert(15);
+        sList.insert(42);
+
+        sList.display();
+
+        System.out.println("smallest: " + sList.remove());
+        sList.display();
     }
 }

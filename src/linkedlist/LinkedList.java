@@ -2,6 +2,9 @@ package linkedlist;
 
 import sun.plugin.dom.exception.InvalidStateException;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class LinkedList<E> {
 
     private static class Link<E> {
@@ -17,10 +20,40 @@ public class LinkedList<E> {
         }
     }
 
+    private class LinkedListIterator implements Iterator<E> {
+        private Link<E> current;
+
+        public LinkedListIterator() {
+            current = first;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            Link<E> tmp = current;
+            current = current.next;
+            return tmp.item;
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
+
     Link<E> first;
 
     public LinkedList() {
         first = null;
+    }
+
+    public Iterator<E> iterator() {
+        return new LinkedListIterator();
     }
 
     public void insertFirst(E element) {

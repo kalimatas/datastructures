@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.Iterator;
+
 public class LinkedListApp {
     public static void main(String[] args) {
         LinkedList<Integer> list = new LinkedList<Integer>();
@@ -19,6 +21,13 @@ public class LinkedListApp {
         System.out.println("20 is in the list: " + list.contains(20));
 
         list.display();
+
+        System.out.println("iterate over linked list");
+        Iterator<Integer> iter = list.iterator();
+        while (iter.hasNext()) {
+            System.out.print(iter.next() + " ");
+        }
+        System.out.println();
 
         System.out.println("DoublyEndedLinkedList");
 

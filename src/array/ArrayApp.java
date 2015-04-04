@@ -39,6 +39,10 @@ public class ArrayApp {
             System.out.println("found 16");
         }
 
+        if (orderedArray.findRecursive(16, 0, orderedArray.size() - 1) != orderedArray.size()) {
+            System.out.println("found 16");
+        }
+
         orderedArray.delete(4);
         orderedArray.display();
     }

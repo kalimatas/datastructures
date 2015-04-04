@@ -54,6 +54,25 @@ public class OrderedArray {
         }
     }
 
+    public int findRecursive(int searchKey, int lowerBound, int upperBound) {
+        int currentPosition = (lowerBound + upperBound) / 2;
+
+        if (items[currentPosition] == searchKey) {
+            return currentPosition;
+        } else if (lowerBound > upperBound) {
+            return size;
+        } else {
+            // left part
+            if (searchKey < items[currentPosition]) {
+                return findRecursive(searchKey, lowerBound, currentPosition - 1);
+            }
+            // right part
+            else {
+                return findRecursive(searchKey, currentPosition + 1, upperBound);
+            }
+        }
+    }
+
     public boolean delete(int searchKey) {
         int pos = find(searchKey);
         if (pos != size) {

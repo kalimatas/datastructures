@@ -12,6 +12,10 @@ public class HighArray {
         items[size++] = newItem;
     }
 
+    public int size() {
+        return size;
+    }
+
     public int find(int searchKey) {
         for (int i = 0; i < size; i++) {
             if (items[i] == searchKey) {

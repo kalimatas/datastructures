@@ -2,7 +2,7 @@ package binarytree;
 
 public class BinaryTree<K extends Comparable<K>, V> {
 
-    private static class Node<K, V> {
+    public static class Node<K, V> {
         K key;
         V value;
         Node<K, V> leftChild;
@@ -17,14 +17,17 @@ public class BinaryTree<K extends Comparable<K>, V> {
     private Node<K, V> root = null;
 
     public Node<K, V> find(K key) {
-        Node<K, V> current = root;
-
-        if (current == null)
+        if (root == null)
             return null;
 
-        int cmp = key.compareTo(current.key);
-        while (cmp != 0) {
-            if (cmp < 0)
+        Node<K, V> current = root;
+
+        while (true) {
+            int cmp = key.compareTo(current.key);
+
+            if (cmp == 0)
+                return current;
+            else if (cmp < 0)
                 current = current.leftChild;
             else
                 current = current.rightChild;
@@ -32,7 +35,35 @@ public class BinaryTree<K extends Comparable<K>, V> {
             if (current == null)
                 return null;
         }
+    }
 
-        return current;
+    public void insert(K key, V value) {
+        Node<K, V> newNode = new Node<K, V>(key, value);
+
+        if (root == null) {
+            root = newNode;
+            return;
+        }
+
+        Node<K, V> current = root;
+        Node<K, V> previous;
+
+        while (true) {
+            previous = current;
+            int cmp = key.compareTo(current.key);
+            if (cmp < 0) {
+                current = current.leftChild;
+                if (current == null) {
+                    previous.leftChild = newNode;
+                    return;
+                }
+            } else {
+                current = current.rightChild;
+                if (current == null) {
+                    previous.rightChild = newNode;
+                    return;
+                }
+            }
+        }
     }
 }

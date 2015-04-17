@@ -11,10 +11,16 @@ public class BinaryTreeApp {
         tree.insert(42, 'E');
         tree.insert(9, 'F');
 
+        // Ascending order
+        tree.traverseInorder();
+        System.out.println();
+
         BinaryTree.Node<Integer, Character> node = tree.find(33);
         if (node != null)
-            System.out.println("Found!");
+            System.out.printf("%d found!\n", 33);
         else
-            System.out.println("Not found!");
+            System.out.printf("%d not found!\n", 33);
+
+
     }
 }

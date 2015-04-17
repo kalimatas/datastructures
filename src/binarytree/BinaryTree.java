@@ -66,4 +66,43 @@ public class BinaryTree<K extends Comparable<K>, V> {
             }
         }
     }
+
+    public void traverseInorder() {
+        inOrder(root);
+    }
+
+    public void traversePreorder() {
+        preOrder(root);
+    }
+
+    public void traversePostorder() {
+        postOrder(root);
+    }
+
+    private void inOrder(Node<K, V> node) {
+        if (node == null)
+            return;
+
+        inOrder(node.leftChild);
+        System.out.print(node.value + " ");
+        inOrder(node.rightChild);
+    }
+
+    private void preOrder(Node<K, V> node) {
+        if (node == null)
+            return;
+
+        System.out.print(node.value + " ");
+        preOrder(node.leftChild);
+        preOrder(node.rightChild);
+    }
+
+    private void postOrder(Node<K, V> node) {
+        if (node == null)
+            return;
+
+        postOrder(node.leftChild);
+        postOrder(node.rightChild);
+        System.out.print(node.value + " ");
+    }
 }

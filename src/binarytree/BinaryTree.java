@@ -105,4 +105,24 @@ public class BinaryTree<K extends Comparable<K>, V> {
         postOrder(node.rightChild);
         System.out.print(node.value + " ");
     }
+
+    public Node<K, V> minimum() {
+        Node<K, V> current = root;
+        while (true) {
+            if (current.leftChild == null)
+                return current;
+
+            current = current.leftChild;
+        }
+    }
+
+    public Node<K, V> maximum() {
+        Node<K, V> current = root;
+        while (true) {
+            if (current.rightChild == null)
+                return current;
+
+            current = current.rightChild;
+        }
+    }
 }

@@ -21,6 +21,10 @@ public class BinaryTreeApp {
         else
             System.out.printf("%d not found!\n", 33);
 
+        BinaryTree.Node<Integer, Character> min = tree.minimum();
+        System.out.printf("min: %d - %s\n", min.key, min.value);
 
+        BinaryTree.Node<Integer, Character> max = tree.maximum();
+        System.out.printf("max: %d - %s\n", max.key, max.value);
     }
 }

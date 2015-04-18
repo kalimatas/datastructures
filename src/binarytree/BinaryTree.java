@@ -2,6 +2,10 @@ package binarytree;
 
 public class BinaryTree<K extends Comparable<K>, V> {
 
+    public static final int TRAVERSE_INORDER = 1;
+    public static final int TRAVERSE_PREORDER = 2;
+    public static final int TRAVERSE_POSTORDER = 3;
+
     public static class Node<K, V> {
         K key;
         V value;
@@ -153,16 +157,18 @@ public class BinaryTree<K extends Comparable<K>, V> {
         return successor;
     }
 
-    public void traverseInorder() {
-        inOrder(root);
-    }
-
-    public void traversePreorder() {
-        preOrder(root);
-    }
-
-    public void traversePostorder() {
-        postOrder(root);
+    public void traverse(int type) {
+        switch (type) {
+            case TRAVERSE_INORDER:
+                inOrder(root);
+                break;
+            case TRAVERSE_PREORDER:
+                preOrder(root);
+                break;
+            case TRAVERSE_POSTORDER:
+                postOrder(root);
+                break;
+        }
     }
 
     private void inOrder(Node<K, V> node) {

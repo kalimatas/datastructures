@@ -5,10 +5,10 @@ public class BinaryTreeApp {
         BinaryTree<Integer, Character> tree = getTree();
 
         // Ascending order
-        tree.traverseInorder();
+        tree.traverse(BinaryTree.TRAVERSE_INORDER);
         System.out.println();
 
-        tree.traversePreorder();
+        tree.traverse(BinaryTree.TRAVERSE_PREORDER);
         System.out.println();
 
         BinaryTree.Node<Integer, Character> node = tree.find(33);
@@ -26,13 +26,13 @@ public class BinaryTreeApp {
         tree = getTree();
         System.out.printf("Delete %d:%c\n", 2, 'D');
         tree.delete(2);
-        tree.traversePreorder();
+        tree.traverse(BinaryTree.TRAVERSE_PREORDER);
         System.out.println();
 
         tree = getTree();
         System.out.printf("Delete %d:%c\n", 20, 'B');
         tree.delete(20);
-        tree.traversePreorder();
+        tree.traverse(BinaryTree.TRAVERSE_PREORDER);
         System.out.println();
 
         BinaryTree<Integer, Character> delRootTree = new BinaryTree<Integer, Character>();
@@ -40,10 +40,10 @@ public class BinaryTreeApp {
         delRootTree.insert(20, 'B');
         delRootTree.insert(15, 'C');
         delRootTree.insert(25, 'D');
-        delRootTree.traversePreorder();
+        delRootTree.traverse(BinaryTree.TRAVERSE_PREORDER);
         System.out.println();
         delRootTree.delete(10);
-        delRootTree.traversePreorder();
+        delRootTree.traverse(BinaryTree.TRAVERSE_PREORDER);
         System.out.println();
 
         BinaryTree<Integer, Character> delWithSuccessorTree = new BinaryTree<Integer, Character>();
@@ -54,10 +54,10 @@ public class BinaryTreeApp {
         delWithSuccessorTree.insert(25, 'D');
         delWithSuccessorTree.insert(18, 'E');
         delWithSuccessorTree.insert(19, 'H');
-        delWithSuccessorTree.traversePreorder();
+        delWithSuccessorTree.traverse(BinaryTree.TRAVERSE_PREORDER);
         System.out.println();
         delWithSuccessorTree.delete(10);
-        delWithSuccessorTree.traversePreorder();
+        delWithSuccessorTree.traverse(BinaryTree.TRAVERSE_PREORDER);
         System.out.println();
     }
 

@@ -48,9 +48,9 @@ public class BinaryTree<K extends Comparable<K>, V> {
         Node<K, V> current = root;
         Node<K, V> previous;
 
-        while (true) {
+        int cmp;
+        while ((cmp = key.compareTo(current.key)) != 0) {
             previous = current;
-            int cmp = key.compareTo(current.key);
             if (cmp < 0) {
                 current = current.leftChild;
                 if (current == null) {
@@ -65,6 +65,92 @@ public class BinaryTree<K extends Comparable<K>, V> {
                 }
             }
         }
+    }
+
+    public boolean delete(K key) {
+        if (root == null)
+            return false;
+
+        Node<K, V> current = root;
+        Node<K, V> previous = root;
+        boolean isLeftChild = true;
+
+        // Find a node to delete
+        int cmp;
+        while ((cmp = key.compareTo(current.key)) != 0) {
+            previous = current;
+            if (cmp < 0) {
+                current = current.leftChild;
+                isLeftChild = true;
+            } else {
+                current = current.rightChild;
+                isLeftChild = false;
+            }
+
+            if (current == null) {
+                return false;
+            }
+        }
+
+        // Has no children
+        if (current.leftChild == null && current.rightChild == null) {
+            // Check root
+            if (current == root)
+                root = null;
+            else if (isLeftChild)
+                previous.leftChild = null;
+            else
+                previous.rightChild = null;
+        }
+        // Has one child
+        else if (current.leftChild == null || current.rightChild == null) {
+            Node<K, V> toCopy;
+            if (current.leftChild == null)
+                toCopy = current.rightChild;
+            else
+                toCopy = current.leftChild;
+
+            if (current == root)
+                root = toCopy;
+            else if (isLeftChild)
+                previous.leftChild = toCopy;
+            else
+                previous.rightChild = toCopy;
+        }
+        // Has two children: find inorder successor and replace it
+        else {
+            Node<K, V> successor = getSuccessore(current);
+
+            if (current == root)
+                root = successor;
+            else if (isLeftChild)
+                previous.leftChild = successor;
+            else
+                previous.rightChild = successor;
+
+            successor.leftChild = current.leftChild;
+        }
+
+        return true;
+    }
+
+    private Node<K, V> getSuccessore(Node<K, V> toDelete) {
+        Node<K, V> successor = toDelete;
+        Node<K, V> successorParent = toDelete;
+        Node<K, V> current = toDelete.rightChild;
+
+        while (current != null) {
+            successorParent = successor;
+            successor = current;
+            current = current.leftChild;
+        }
+
+        if (successor != toDelete.rightChild) {
+            successorParent.leftChild = successor.rightChild;
+            successor.rightChild = toDelete.rightChild;
+        }
+
+        return successor;
     }
 
     public void traverseInorder() {

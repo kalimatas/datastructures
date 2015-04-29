@@ -1,6 +1,6 @@
 package hashtable;
 
-public class DataItem {
+public class DataItem implements Comparable<DataItem> {
     private int key;
 
     public DataItem(int key) {
@@ -9,5 +9,14 @@ public class DataItem {
 
     public int getKey() {
         return key;
+    }
+
+    public String toString() {
+        return Integer.toString(key);
+    }
+
+    @Override
+    public int compareTo(DataItem o) {
+        return key - o.getKey();
     }
 }

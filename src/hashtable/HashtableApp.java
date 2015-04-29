@@ -27,5 +27,22 @@ public class HashTableApp {
         htOADouble.insert(new DataItem(67));
 
         htOADouble.display();
+
+        HashTableChaining htChaining = new HashTableChaining(13);
+        htChaining.insert(new DataItem(7));
+        htChaining.insert(new DataItem(9));
+        htChaining.insert(new DataItem(78));
+        htChaining.insert(new DataItem(17));
+        htChaining.insert(new DataItem(3));
+        htChaining.insert(new DataItem(16));
+
+        htChaining.display();
+
+        DataItem f = htChaining.find(16);
+        if (f != null) System.out.println("found: " + f.getKey());
+
+        htChaining.delete(3);
+        htChaining.display();
+
     }
 }

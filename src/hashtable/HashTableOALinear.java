@@ -16,6 +16,16 @@ public class HashTableOALinear {
         return key % size;
     }
 
+    public void display() {
+        for (int i = 0; i < size; i++) {
+            if (items[i] != null)
+                System.out.printf("%d ", items[i].getKey());
+            else
+                System.out.print("_ ");
+        }
+        System.out.println();
+    }
+
     public void insert(DataItem item) {
         int hash = hash(item.getKey());
         DataItem current = items[hash];

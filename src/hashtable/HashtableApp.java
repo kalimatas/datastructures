@@ -17,5 +17,15 @@ public class HashTableApp {
         htOALiner.display();
         htOALiner.insert(new DataItem(37));
         htOALiner.display();
+
+        System.out.println();
+
+        HashTableOADoubleHashing htOADouble = new HashTableOADoubleHashing(30);
+        htOADouble.insert(new DataItem(7));
+        htOADouble.insert(new DataItem(8));
+        htOADouble.insert(new DataItem(37));
+        htOADouble.insert(new DataItem(67));
+
+        htOADouble.display();
     }
 }

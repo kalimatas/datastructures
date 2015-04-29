@@ -53,5 +53,11 @@ public class LinkedListApp {
 
         System.out.println("smallest: " + sList.remove());
         sList.display();
+
+        sList.delete(20);
+        sList.display();
+
+        Integer f = sList.find(42);
+        System.out.println("found: " + f);
     }
 }

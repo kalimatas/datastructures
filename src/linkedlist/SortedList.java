@@ -41,6 +41,33 @@ public class SortedList<E extends Comparable<E>> {
         newLink.next = current;
     }
 
+    public E find(E key) {
+        Link<E> current = first;
+        while (current != null && current.item.compareTo(key) <= 0) {
+            if (current.item.compareTo(key) == 0) return current.item;
+            current = current.next;
+        }
+
+        return null;
+    }
+
+    public void delete(E key) {
+        if (isEmpty()) return;
+
+        Link<E> previous = null;
+        Link<E> current = first;
+
+        while (current != null && current.item.compareTo(key) != 0) {
+            previous = current;
+            current = current.next;
+        }
+
+        if (previous == null)
+            first = first.next;
+        else
+            previous.next = current.next;
+    }
+
     public E remove() {
         if (isEmpty())
             throw new InvalidStateException("Linked list is empty");

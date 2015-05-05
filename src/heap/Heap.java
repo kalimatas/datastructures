@@ -1,9 +1,9 @@
 package heap;
 
 public class Heap {
-    private DataItem[] items;
-    private int maxSize;
-    private int size;
+    protected DataItem[] items;
+    protected int maxSize;
+    protected int size;
 
     public Heap(int maxSize) {
         this.maxSize = maxSize;
@@ -11,7 +11,7 @@ public class Heap {
         items = new DataItem[maxSize];
     }
 
-    private void trickleUp(int index) {
+    public void trickleUp(int index) {
         DataItem bottom = items[index];
         int current = index;
         int parent = (index - 1) / 2;
@@ -25,7 +25,7 @@ public class Heap {
         items[current] = bottom;
     }
 
-    private void trickleDown(int index) {
+    public void trickleDown(int index) {
         DataItem top = items[index];
         int current = index;
         int larger, left, right;

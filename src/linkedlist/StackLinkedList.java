@@ -17,6 +17,13 @@ public class StackLinkedList<E> {
         return items.deleteFirst();
     }
 
+    public E peek() throws Exception {
+        if (isEmpty())
+            throw new Exception("Stack is empty");
+
+        return items.getFirst();
+    }
+
     public boolean isEmpty() {
         return items.isEmpty();
     }

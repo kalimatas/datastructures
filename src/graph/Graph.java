@@ -1,5 +1,7 @@
 package graph;
 
+import linkedlist.StackLinkedList;
+
 public class Graph {
 
     private class Vertex {
@@ -15,7 +17,7 @@ public class Graph {
         }
 
         private void display() {
-            System.out.println(label);
+            System.out.printf("%s ", label);
         }
     }
 
@@ -42,4 +44,38 @@ public class Graph {
         adjMatrix[to][from] = 1;
     }
 
+    private void resetIsVisited() {
+        for (int i = 0; i < size; i++)
+            vertexList[i].setVisited(false);
+    }
+
+    private int getAdjacentUnvisited(int vertex) {
+        for (int i = 0; i < size; i++)
+            if (adjMatrix[vertex][i] == 1 && !vertexList[i].isVisited)
+                return i;
+
+        return -1;
+    }
+
+    public void dfs() throws Exception {
+        StackLinkedList<Integer> stack = new StackLinkedList<Integer>();
+
+        vertexList[0].setVisited(true);
+        vertexList[0].display();
+        stack.push(0);
+
+        while (!stack.isEmpty()) {
+            int adjVertex = getAdjacentUnvisited(stack.peek());
+            if (adjVertex == -1) {
+                stack.pop();
+            } else {
+                vertexList[adjVertex].setVisited(true);
+                vertexList[adjVertex].display();
+                stack.push(adjVertex);
+            }
+        }
+
+        resetIsVisited();
+        System.out.println();
+    }
 }

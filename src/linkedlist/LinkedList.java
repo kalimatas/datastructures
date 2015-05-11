@@ -62,6 +62,13 @@ public class LinkedList<E> {
         first = newLink;
     }
 
+    public E getFirst() {
+        if (isEmpty())
+            throw new InvalidStateException("Linked list is empty");
+
+        return first.item;
+    }
+
     public E deleteFirst() {
         if (isEmpty())
             throw new InvalidStateException("Linked list is empty");

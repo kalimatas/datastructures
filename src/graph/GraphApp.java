@@ -15,6 +15,10 @@ public class GraphApp {
         graph.addEdge(0, 3);
         graph.addEdge(3, 4);
 
+        System.out.print("DFS: ");
         graph.dfs();
+
+        System.out.print("BFS: ");
+        graph.bfs();
     }
 }

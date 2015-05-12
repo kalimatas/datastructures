@@ -1,6 +1,7 @@
 package graph;
 
 import linkedlist.StackLinkedList;
+import stackqueue.QueueArray;
 
 public class Graph {
 
@@ -72,6 +73,27 @@ public class Graph {
                 vertexList[adjVertex].setVisited(true);
                 vertexList[adjVertex].display();
                 stack.push(adjVertex);
+            }
+        }
+
+        resetIsVisited();
+        System.out.println();
+    }
+
+    public void bfs() {
+        QueueArray<Integer> queue = new QueueArray<Integer>(MAX_VERTS);
+
+        vertexList[0].setVisited(true);
+        vertexList[0].display();
+        queue.insert(0);
+
+        int adjVertex;
+        while (!queue.isEmpty()) {
+            int vertex = queue.remove();
+            while ((adjVertex = getAdjacentUnvisited(vertex)) != -1) {
+                vertexList[adjVertex].setVisited(true);
+                vertexList[adjVertex].display();
+                queue.insert(adjVertex);
             }
         }
 

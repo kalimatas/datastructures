@@ -11,8 +11,12 @@ public class GraphApp {
         graph.addVertex('E');
 
         graph.addEdge(0, 1);
+        graph.addEdge(0, 4);
         graph.addEdge(1, 2);
+        graph.addEdge(1, 3);
         graph.addEdge(0, 3);
+        graph.addEdge(2, 3);
+        graph.addEdge(2, 4);
         graph.addEdge(3, 4);
 
         System.out.print("DFS: ");
@@ -20,5 +24,8 @@ public class GraphApp {
 
         System.out.print("BFS: ");
         graph.bfs();
+
+        System.out.print("MST: ");
+        graph.mst();
     }
 }

@@ -18,7 +18,7 @@ public class Graph {
         }
 
         private void display() {
-            System.out.printf("%s ", label);
+            System.out.printf("%s", label);
         }
     }
 
@@ -65,8 +65,9 @@ public class Graph {
         vertexList[0].display();
         stack.push(0);
 
+        int adjVertex;
         while (!stack.isEmpty()) {
-            int adjVertex = getAdjacentUnvisited(stack.peek());
+            adjVertex = getAdjacentUnvisited(stack.peek());
             if (adjVertex == -1) {
                 stack.pop();
             } else {
@@ -87,13 +88,43 @@ public class Graph {
         vertexList[0].display();
         queue.insert(0);
 
-        int adjVertex;
+        int vertex, adjVertex;
         while (!queue.isEmpty()) {
-            int vertex = queue.remove();
+            vertex = queue.remove();
             while ((adjVertex = getAdjacentUnvisited(vertex)) != -1) {
                 vertexList[adjVertex].setVisited(true);
                 vertexList[adjVertex].display();
                 queue.insert(adjVertex);
+            }
+        }
+
+        resetIsVisited();
+        System.out.println();
+    }
+
+    /**
+     * Create a minimum spanning tree with DFS.
+     */
+    public void mst() throws Exception {
+        StackLinkedList<Integer> stack = new StackLinkedList<Integer>();
+
+        vertexList[0].setVisited(true);
+        stack.push(0);
+
+        int vertex, adjVertex;
+
+        while (!stack.isEmpty()) {
+            vertex = stack.peek();
+            adjVertex = getAdjacentUnvisited(vertex);
+            if (adjVertex == -1) {
+                stack.pop();
+            } else {
+                vertexList[adjVertex].setVisited(true);
+                stack.push(adjVertex);
+
+                vertexList[vertex].display();
+                vertexList[adjVertex].display();
+                System.out.print(' ');
             }
         }
 

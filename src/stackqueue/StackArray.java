@@ -32,6 +32,10 @@ public class StackArray<E> {
         return items[top];
     }
 
+    public int size() {
+        return top + 1;
+    }
+
     public boolean isEmpty() {
         return top == -1;
     }

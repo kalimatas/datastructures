@@ -1,17 +1,17 @@
 package stackqueue;
 
 public class PriorityQueueArray {
-    long[] items;
+    Comparable[] items;
     int maxSize;
     int size;
 
     public PriorityQueueArray(int maxSize) {
         this.maxSize = maxSize;
-        items = new long[maxSize];
+        items = new Comparable[maxSize];
         size = 0;
     }
 
-    public void insert(long elem) {
+    public void insert(Comparable elem) {
         if (isFull())
             throw new IllegalStateException("Queue is full");
 
@@ -21,7 +21,8 @@ public class PriorityQueueArray {
             // Find a place to insert. Lower elements are at higher indexes.
             int i;
             for (i = size - 1; i >= 0; i--) {
-                if (elem > items[i]) {
+                //noinspection unchecked
+                if (elem.compareTo(items[i]) > 0) {
                     items[i + 1] = items[i];
                 } else {
                     break;
@@ -34,14 +35,14 @@ public class PriorityQueueArray {
         }
     }
 
-    public long remove() {
+    public Comparable remove() {
         if (isEmpty())
             throw new IllegalStateException("Queue is empty");
 
         return items[--size];
     }
 
-    public long peekMin() {
+    public Comparable peekMin() {
         if (isEmpty())
             throw new IllegalStateException("Queue is empty");
 

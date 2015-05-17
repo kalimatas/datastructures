@@ -1,9 +1,9 @@
 package stackqueue;
 
 public class PriorityQueueArray {
-    Comparable[] items;
-    int maxSize;
-    int size;
+    protected Comparable[] items;
+    protected int maxSize;
+    protected int size;
 
     public PriorityQueueArray(int maxSize) {
         this.maxSize = maxSize;

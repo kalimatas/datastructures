@@ -5,7 +5,7 @@ import sun.plugin.dom.exception.InvalidStateException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<E> {
+public class List<E> implements Iterable<E> {
 
     private static class Link<E> {
         E item;
@@ -48,7 +48,7 @@ public class LinkedList<E> {
 
     Link<E> first;
 
-    public LinkedList() {
+    public List() {
         first = null;
     }
 

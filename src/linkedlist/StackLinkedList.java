@@ -1,7 +1,7 @@
 package linkedlist;
 
 public class StackLinkedList<E> {
-    LinkedList<E> items = new LinkedList<E>();
+    List<E> items = new List<E>();
     int size = 0;
 
     public void push(E element) {

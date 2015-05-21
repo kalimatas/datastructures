@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class LinkedListApp {
     public static void main(String[] args) {
-        LinkedList<Integer> list = new LinkedList<Integer>();
+        List<Integer> list = new List<Integer>();
         list.insertFirst(10);
         list.insertFirst(20);
         list.insertFirst(30);

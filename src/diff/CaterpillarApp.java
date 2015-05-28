@@ -7,6 +7,9 @@ public class CaterpillarApp {
         } else {
             System.out.println("false");
         }
+
+        System.out.println("triangles: " + triangles(new int[]{4, 6, 3, 7}));
+        System.out.println("triangles brute: " + trianglesBrute(new int[]{4, 6, 3, 7}));
     }
 
     private static boolean hasSequence(int[] A, int sum) {
@@ -24,5 +27,33 @@ public class CaterpillarApp {
         }
 
         return false;
+    }
+
+    private static int triangles(int[] A) {
+        int n = A.length;
+        int result = 0;
+        int z;
+
+        for (int x = 0; x < n; x++) {
+            z = 0;
+            for (int y = x + 1; y < n; y++) {
+                while (z < n && A[x] + A[y] > A[z]) z++;
+
+                result += z - y - 1;
+            }
+        }
+
+        return result;
+    }
+
+    private static int trianglesBrute(int[] A) {
+        int result = 0;
+
+        for (int x = 0; x < A.length; x++)
+            for (int y = x + 1; y < A.length; y++)
+                for (int z  = y + 1; z < A.length; z++)
+                    if (A[x] + A[y] > A[z]) result++;
+
+        return result;
     }
 }

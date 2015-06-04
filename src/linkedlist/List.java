@@ -116,6 +116,45 @@ public class List<E> implements Iterable<E> {
         return false;
     }
 
+    public void swap(E x, E y) {
+        if (x.equals(y)) return;
+
+        // find x
+        Link<E> prevX = null, currX = first;
+        while (currX != null && !currX.item.equals(x)) {
+            prevX = currX;
+            currX = currX.next;
+        }
+
+        if (currX == null) return;
+
+        // find y
+        Link<E> prevY = null, currY = first;
+        while (currY != null && !currY.item.equals(y)) {
+            prevY = currY;
+            currY = currY.next;
+        }
+
+        if (currY == null) return;
+
+        // if x is not head
+        if (prevX != null)
+            prevX.next = currY;
+        else
+            first = currY;
+
+        // if y is not head
+        if (prevY != null)
+            prevY.next = currX;
+        else
+            first = currX;
+
+        // swap
+        Link<E> tmp = currY.next;
+        currY.next = currX.next;
+        currX.next = tmp;
+    }
+
     public boolean isEmpty() {
         return first == null;
     }

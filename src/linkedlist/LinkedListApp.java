@@ -29,6 +29,19 @@ public class LinkedListApp {
         }
         System.out.println();
 
+        list.insertFirst(13);
+        list.insertFirst(20);
+        list.insertFirst(33);
+        list.insertFirst(50);
+        list.display();
+
+        list.swap(30, 33);
+        list.display();
+
+        list.swap(50, 10);
+        list.display();
+
+
         System.out.println("DoublyEndedLinkedList");
 
         DoublyEndedLinkedList<Integer> dList = new DoublyEndedLinkedList<Integer>();

@@ -1,12 +1,12 @@
 package stackqueue;
 
 public class StackArray<E> {
-    E items[];
+    Object items[];
     int maxSize;
     int top;
 
     public StackArray(int size) {
-        items = (E[]) new Object[size];
+        items = new Object[size];
         maxSize = size;
         top = -1;
     }
@@ -18,18 +18,20 @@ public class StackArray<E> {
         items[++top] = elem;
     }
 
+    @SuppressWarnings("unchecked")
     public E pop() {
         if (isEmpty())
             throw new IllegalStateException("Stack is empty");
 
-        return items[top--];
+        return (E) items[top--];
     }
 
+    @SuppressWarnings("unchecked")
     public E peek() {
         if (isEmpty())
             throw new IllegalStateException("Stack is empty");
 
-        return items[top];
+        return (E) items[top];
     }
 
     public int size() {

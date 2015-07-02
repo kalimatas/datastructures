@@ -2,7 +2,7 @@ package stackqueue;
 
 public class QueueApp {
     public static void main(String[] args) {
-        QueueArray<Integer> queue = new QueueArray<Integer>(5);
+        QueueArray<Integer> queue = new QueueArray<>(5);
 
         queue.insert(40);
         queue.insert(50);

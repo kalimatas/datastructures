@@ -1,14 +1,14 @@
 package stackqueue;
 
 public class QueueArray<E> {
-    E[] items;
+    Object[] items;
     int front;
     int rear;
     int maxSize;
     int size;
 
     public QueueArray(int maxSize) {
-        items = (E[]) new Object[maxSize];
+        items = new Object[maxSize];
         this.maxSize = maxSize;
         front = 0;
         rear = -1;
@@ -26,23 +26,25 @@ public class QueueArray<E> {
         size++;
     }
 
+    @SuppressWarnings("unchecked")
     public E remove() {
         if (isEmpty())
             throw new IllegalStateException("Queue is empty");
 
-        E e = items[front++];
+        Object e = items[front++];
         if (front == maxSize)
             front = 0;
         size--;
 
-        return e;
+        return (E) e;
     }
 
+    @SuppressWarnings("unchecked")
     public E peek() {
         if (isEmpty())
             throw new IllegalStateException("Queue is empty");
 
-        return items[front];
+        return (E) items[front];
     }
 
     public boolean isFull() {

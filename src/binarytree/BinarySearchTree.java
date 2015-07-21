@@ -1,6 +1,6 @@
 package binarytree;
 
-public class BinaryTree<K extends Comparable<K>, V> {
+public class BinarySearchTree<K extends Comparable<K>, V> {
 
     public static final int TRAVERSE_INORDER = 1;
     public static final int TRAVERSE_PREORDER = 2;

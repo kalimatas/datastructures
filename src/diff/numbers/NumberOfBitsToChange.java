@@ -2,7 +2,8 @@ package diff.numbers;
 
 public class NumberOfBitsToChange {
     public static void main(String[] args) {
-        System.out.println(numberOfBitsToChange(0b1111001, 0b1010101)); // 3
+        //System.out.println(numberOfBitsToChange(0b1111001, 0b1010101)); // 3
+        System.out.println(numberOfBitsToChange2(0b1111001, 0b1010101)); // 3
     }
 
     static int numberOfBitsToChange(int i1, int i2) {
@@ -26,6 +27,14 @@ public class NumberOfBitsToChange {
         while (n > 0) {
             if ((n & 1) == 1) result++;
             n = n >> 1;
+        }
+        return result;
+    }
+
+    static int numberOfBitsToChange2(int i1, int i2) {
+        int result = 0;
+        for (int n = i1 ^ i2; n > 0; n = n >> 1) {
+            result += n & 1;
         }
         return result;
     }

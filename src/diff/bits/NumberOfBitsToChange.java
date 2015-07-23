@@ -1,4 +1,4 @@
-package diff.numbers;
+package diff.bits;
 
 public class NumberOfBitsToChange {
     public static void main(String[] args) {

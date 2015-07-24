@@ -50,7 +50,7 @@ public class DirectedGraph {
         adjMatrix[from][to] = 1;
     }
 
-    public void topologicaOrdering() throws Exception {
+    public void topologicalOrdering() throws Exception {
         StackLinkedList<Character> stack = new StackLinkedList<Character>();
 
         // copy data

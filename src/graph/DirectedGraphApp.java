@@ -23,6 +23,6 @@ public class DirectedGraphApp {
         graph.addEdge(6, 7);
 
         System.out.print("Topological ordering: ");
-        graph.topologicaOrdering();
+        graph.topologicalOrdering();
     }
 }

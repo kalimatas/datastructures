@@ -1,5 +1,7 @@
 package diff.binarytree;
 
+import java.util.LinkedList;
+
 public class Traversal {
     private static class Node {
         int data;
@@ -19,14 +21,17 @@ public class Traversal {
         root.right.right = new Node(64);
         root.right.right.left = new Node(11);
 
-        System.out.printf("Inorder: ");
-        inorder(root);
+//        System.out.printf("Inorder: ");
+//        inorder(root);
+//
+//        System.out.printf("%nPreorder: ");
+//        preorder(root);
+//
+//        System.out.printf("%nPostorder: ");
+//        postorder(root);
 
-        System.out.printf("%nPreorder: ");
-        preorder(root);
-
-        System.out.printf("%nPostorder: ");
-        postorder(root);
+        System.out.printf("%nLevel: ");
+        level(root);
     }
 
     static void inorder(Node node) {
@@ -55,5 +60,20 @@ public class Traversal {
         postorder(node.left);
         postorder(node.right);
         System.out.printf("%d ", node.data);
+    }
+
+    // Use BFS
+    static void level(Node root) {
+        LinkedList<Node> queue = new LinkedList<>();
+
+        queue.addLast(root);
+
+        while (!queue.isEmpty()) {
+            Node current = queue.removeFirst();
+            System.out.printf("%d ", current.data);
+
+            if (current.left != null) queue.addLast(current.left);
+            if (current.right != null) queue.addLast(current.right);
+        }
     }
 }

@@ -24,7 +24,7 @@ public class MiddleElement {
         head = push(head, 50);
         //head = push(head, 60);
 
-        System.out.printf("%d \n", middle(head));
+        System.out.printf("%d \n", middleV2(head));
     }
 
     static int middle(Node head) {
@@ -38,5 +38,21 @@ public class MiddleElement {
         }
 
         return slow.item;
+    }
+
+    // increment only if count is odd
+    static int middleV2(Node head) {
+        int count = 0;
+        Node mid = head;
+
+        while (head != null) {
+            if ((count & 1) == 1)
+                mid = mid.next;
+
+            count++;
+            head = head.next;
+        }
+
+        return mid.item;
     }
 }

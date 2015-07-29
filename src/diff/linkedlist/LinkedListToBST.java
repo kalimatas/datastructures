@@ -33,7 +33,7 @@ public class LinkedListToBST {
         head = push(head, 1);
 
         int n = countNodes();
-        TreeNode root = simple(n);
+        TreeNode root = listToBST(n);
 
         inorder(root);
     }
@@ -56,11 +56,11 @@ public class LinkedListToBST {
         return count;
     }
 
-    static TreeNode simple(int n) {
+    static TreeNode listToBST(int n) {
         if (n <= 0) return null;
 
         // Construct the left subtree
-        TreeNode left = simple(n / 2);
+        TreeNode left = listToBST(n / 2);
 
         TreeNode root = new TreeNode(head.item);
         root.left = left;
@@ -69,7 +69,7 @@ public class LinkedListToBST {
         head = head.next;
 
         // Construct the right subtree
-        root.right = simple(n - n/2 - 1);
+        root.right = listToBST(n - n / 2 - 1);
 
         return root;
     }

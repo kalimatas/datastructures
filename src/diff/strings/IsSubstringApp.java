@@ -1,4 +1,4 @@
-package diff;
+package diff.strings;
 
 public class IsSubstringApp {
     public static void main(String[] args) {

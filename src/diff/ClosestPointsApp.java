@@ -1,23 +1,29 @@
 package diff;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class ClosestPointsApp {
     public static void main(String[] args) {
-        Point[] points = {
-            new Point(3, 3),
-            new Point(2, 1),
-            new Point(1, 2),
-            new Point(1, 1),
-        };
+        List<Point> points = new ArrayList<Point>(
+            Arrays.asList(
+//            new Point(20, 15),
+//            new Point(10, 10),
+//            new Point(20, 10)
+            new Point(2, 3),
+            new Point(12, 30),
+            new Point(40, 50),
+            new Point(5, 1),
+            new Point(12, 10),
+            new Point(3, 4)
+            )
+        );
 
         displayPoints(points);
-        Arrays.sort(points, new CompareByX());
-        displayPoints(points);
+
+        System.out.printf("min distance: %.2f%n", new ClosestPoints().getClosest(points));
     }
 
-    static void displayPoints(Point[] points) {
+    static void displayPoints(List<Point> points) {
         for (Point p : points) {
             System.out.printf("(%d, %d) ", p.x, p.y);
         }
@@ -31,50 +37,90 @@ public class ClosestPointsApp {
             this.x = x;
             this.y = y;
         }
+
+        double distanceTo(Point p) {
+            return Math.sqrt((x - p.x) * (x - p.x) + (y - p.y) * (y - p.y));
+        }
     }
 
     private static class CompareByX implements Comparator<Point> {
         @Override
         public int compare(Point p1, Point p2) {
-            int cmpX = p1.x.compareTo(p2.x);
-            int cmpY = p1.y.compareTo(p2.y);
+            return p1.x.compareTo(p2.x);
+        }
+    }
 
-            if (cmpX < 0 || cmpX == 0 && cmpY < 0)
-                return -1;
-            else if (cmpX == 0 && cmpY == 0)
-                return 0;
-            else
-                return 1;
+    private static class CompareByY implements Comparator<Point> {
+        @Override
+        public int compare(Point p1, Point p2) {
+            return p1.y.compareTo(p2.y);
         }
     }
 
     private static class ClosestPoints {
-        private Point[] points;
-        private double solution = Double.MAX_VALUE;
+        double getClosest(List<Point> points) {
+            List<Point> px = new ArrayList<>();
+            List<Point> py = new ArrayList<>();
 
-        ClosestPoints(Point[] points) {
-            this.points = points;
+            px.addAll(points);
+            py.addAll(points);
+
+            Collections.sort(px, new CompareByX());
+            Collections.sort(py, new CompareByY());
+
+            return getClosestUtil(px, py);
         }
 
-        double getClosestPointsDistance() {
-            // reset solution
-            solution = Double.MAX_VALUE;
+        private double getClosestUtil(List<Point> px, List<Point> py) {
+            // Few points, use brute force
+            if (px.size() <= 3) {
+                return getClosestBruceForce(px, Double.MAX_VALUE);
+            }
 
-            // sort points by x coordinate
-            Arrays.sort(points, new CompareByX());
+            int mid = px.size() / 2;
+            Point midPoint = px.get(mid);
 
-            calculateMinDistance(0, points.length - 1);
+            // Divide py around the vertical line
+            List<Point> pyl = new ArrayList<>();
+            List<Point> pyr = new ArrayList<>();
 
-            return solution;
+            for (Point point : px) {
+                if (point.x <= midPoint.x)
+                    pyl.add(point);
+                else
+                    pyr.add(point);
+            }
 
+            // Calculate the smallest distance in both halves
+            List<Point> pxl = px.subList(0, mid + 1);
+            List<Point> pxr = px.subList(mid, px.size());
+
+            double dl = getClosestUtil(pxl, pyl);
+            double dr = getClosestUtil(pxr, pyr);
+
+            // Smaller of two distances
+            double min = Math.min(dl, dr);
+
+            // todo: use py
+            List<Point> strip = new ArrayList<>();
+            for (Point point : pyr) {
+                if (point.x - midPoint.x < min)
+                    strip.add(point);
+            }
+
+            return Math.min(min, getClosestBruceForce(strip, min));
         }
 
-        private void calculateMinDistance(int l, int r) {
+        private double getClosestBruceForce(List<Point> points, double currentMin) {
+            double min = currentMin;
 
-        }
+            for (int i = 0; i < points.size(); ++i) {
+                for (int j = i + 1; j < points.size() && points.get(j).y - points.get(i).y < min; ++j) {
+                    min = Math.min(min, points.get(i).distanceTo(points.get(j)));
+                }
+            }
 
-        private double getDistance(Point p1, Point p2) {
-            return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+            return min;
         }
     }
 }

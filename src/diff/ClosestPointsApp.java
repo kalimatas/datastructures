@@ -6,15 +6,18 @@ public class ClosestPointsApp {
     public static void main(String[] args) {
         List<Point> points = new ArrayList<Point>(
             Arrays.asList(
-//            new Point(20, 15),
-//            new Point(10, 10),
-//            new Point(20, 10)
             new Point(2, 3),
             new Point(12, 30),
             new Point(40, 50),
             new Point(5, 1),
             new Point(12, 10),
             new Point(3, 4)
+//            new Point(10, 10),
+//            new Point(50, 10),
+//            new Point(30, 20),
+//            new Point(100, 25),
+//            new Point(60, 10),
+//            new Point(120, 12)
             )
         );
 
@@ -84,7 +87,7 @@ public class ClosestPointsApp {
             List<Point> pyl = new ArrayList<>();
             List<Point> pyr = new ArrayList<>();
 
-            for (Point point : px) {
+            for (Point point : py) {
                 if (point.x <= midPoint.x)
                     pyl.add(point);
                 else
@@ -92,7 +95,7 @@ public class ClosestPointsApp {
             }
 
             // Calculate the smallest distance in both halves
-            List<Point> pxl = px.subList(0, mid + 1);
+            List<Point> pxl = px.subList(0, mid);
             List<Point> pxr = px.subList(mid, px.size());
 
             double dl = getClosestUtil(pxl, pyl);
@@ -101,11 +104,11 @@ public class ClosestPointsApp {
             // Smaller of two distances
             double min = Math.min(dl, dr);
 
-            // todo: use py
             List<Point> strip = new ArrayList<>();
-            for (Point point : pyr) {
-                if (point.x - midPoint.x < min)
+            for (Point point : py) {
+                if (Math.abs(point.x - midPoint.x) < min) {
                     strip.add(point);
+                }
             }
 
             return Math.min(min, getClosestBruceForce(strip, min));
@@ -115,7 +118,7 @@ public class ClosestPointsApp {
             double min = currentMin;
 
             for (int i = 0; i < points.size(); ++i) {
-                for (int j = i + 1; j < points.size() && points.get(j).y - points.get(i).y < min; ++j) {
+                for (int j = i + 1; j < points.size() && (points.get(j).y - points.get(i).y) < min; ++j) {
                     min = Math.min(min, points.get(i).distanceTo(points.get(j)));
                 }
             }

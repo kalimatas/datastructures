@@ -1,7 +1,5 @@
 package linkedlist;
 
-import sun.plugin.dom.exception.InvalidStateException;
-
 public class SortedList<E extends Comparable<E>> {
 
     private static class Link<E> {
@@ -70,7 +68,7 @@ public class SortedList<E extends Comparable<E>> {
 
     public E remove() {
         if (isEmpty())
-            throw new InvalidStateException("Linked list is empty");
+            throw new IllegalStateException("Linked list is empty");
 
         Link<E> tmp = first;
         first = first.next;

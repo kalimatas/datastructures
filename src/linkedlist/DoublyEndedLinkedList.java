@@ -1,7 +1,5 @@
 package linkedlist;
 
-import sun.plugin.dom.exception.InvalidStateException;
-
 public class DoublyEndedLinkedList<E> {
 
     private static class Link<E> {
@@ -50,7 +48,7 @@ public class DoublyEndedLinkedList<E> {
 
     public E deleteFirst() {
         if (isEmpty())
-            throw new InvalidStateException("Linked list is empty");
+            throw new IllegalStateException("Linked list is empty");
 
         Link<E> tmp = first;
         first = first.next;

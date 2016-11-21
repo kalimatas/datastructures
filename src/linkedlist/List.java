@@ -1,7 +1,5 @@
 package linkedlist;
 
-import sun.plugin.dom.exception.InvalidStateException;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -64,14 +62,14 @@ public class List<E> implements Iterable<E> {
 
     public E getFirst() {
         if (isEmpty())
-            throw new InvalidStateException("Linked list is empty");
+            throw new IllegalStateException("Linked list is empty");
 
         return first.item;
     }
 
     public E deleteFirst() {
         if (isEmpty())
-            throw new InvalidStateException("Linked list is empty");
+            throw new IllegalStateException("Linked list is empty");
 
         Link<E> tmp = first;
         first = first.next;

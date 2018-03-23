@@ -2,7 +2,7 @@ package binarytree;
 
 public class BinarySearchTreeApp {
     public static void main(String[] args) {
-        BinarySearchTree<Integer, Character> tree = getTree();
+        var tree = getTree();
 
         // Ascending order
         tree.traverse(BinarySearchTree.TRAVERSE_INORDER);
@@ -11,16 +11,16 @@ public class BinarySearchTreeApp {
         tree.traverse(BinarySearchTree.TRAVERSE_PREORDER);
         System.out.println();
 
-        BinarySearchTree.Node<Integer, Character> node = tree.find(33);
+        var node = tree.find(33);
         if (node != null)
             System.out.printf("%d found!\n", 33);
         else
             System.out.printf("%d not found!\n", 33);
 
-        BinarySearchTree.Node<Integer, Character> min = tree.minimum();
+        var min = tree.minimum();
         System.out.printf("min: %d - %s\n", min.key, min.value);
 
-        BinarySearchTree.Node<Integer, Character> max = tree.maximum();
+        var max = tree.maximum();
         System.out.printf("max: %d - %s\n", max.key, max.value);
 
         tree = getTree();
@@ -35,7 +35,7 @@ public class BinarySearchTreeApp {
         tree.traverse(BinarySearchTree.TRAVERSE_PREORDER);
         System.out.println();
 
-        BinarySearchTree<Integer, Character> delRootTree = new BinarySearchTree<Integer, Character>();
+        var delRootTree = new BinarySearchTree<Integer, Character>();
         delRootTree.insert(10, 'A');
         delRootTree.insert(20, 'B');
         delRootTree.insert(15, 'C');
@@ -46,7 +46,7 @@ public class BinarySearchTreeApp {
         delRootTree.traverse(BinarySearchTree.TRAVERSE_PREORDER);
         System.out.println();
 
-        BinarySearchTree<Integer, Character> delWithSuccessorTree = new BinarySearchTree<Integer, Character>();
+        var delWithSuccessorTree = new BinarySearchTree<Integer, Character>();
         delWithSuccessorTree.insert(10, 'A');
         delWithSuccessorTree.insert(8, 'Z');
         delWithSuccessorTree.insert(20, 'B');
@@ -62,7 +62,7 @@ public class BinarySearchTreeApp {
     }
 
     private static BinarySearchTree<Integer, Character> getTree() {
-        BinarySearchTree<Integer, Character> tree = new BinarySearchTree<Integer, Character>();
+        var tree = new BinarySearchTree<Integer, Character>();
 
         tree.insert(10, 'A');
         tree.insert(20, 'B');

@@ -30,7 +30,8 @@ public class Reverse {
             tmp = tmp.next;
         }
 
-        head = reverse(head);
+        //head = reverse(head);
+        head = reverseRecursive(head);
 
         System.out.println();
         tmp = head;
@@ -52,5 +53,18 @@ public class Reverse {
         }
 
         return prev;
+    }
+
+    static Node reverseRecursive(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node reversed = reverseRecursive(head.next);
+
+        head.next.next = head;
+        head.next = null;
+
+        return reversed;
     }
 }

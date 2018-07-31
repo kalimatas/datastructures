@@ -23,6 +23,10 @@ public class SetZeros {
         System.out.println();
     }
 
+    /**
+     * O(mn) where m is number of rows and n is number of columns.
+     * O(m + n) memory
+     */
     static void setZeros(int[][] matrix) {
         boolean[] rows = new boolean[matrix.length];
         boolean[] columns = new boolean[matrix[0].length];

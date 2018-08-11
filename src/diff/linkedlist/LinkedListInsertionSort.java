@@ -1,4 +1,4 @@
-package interview;
+package diff.linkedlist;
 
 public class LinkedListInsertionSort {
     private static class Node {

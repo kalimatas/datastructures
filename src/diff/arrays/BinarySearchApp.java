@@ -1,4 +1,4 @@
-package interview.binarysearch;
+package diff.arrays;
 
 public class BinarySearchApp {
     public static void main(String[] args) {

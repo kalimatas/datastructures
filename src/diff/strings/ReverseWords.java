@@ -1,4 +1,4 @@
-package interview;
+package diff.strings;
 
 public class ReverseWords {
     public static void main(String[] args) {

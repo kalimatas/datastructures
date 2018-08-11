@@ -1,4 +1,4 @@
-package interview;
+package diff.linkedlist;
 
 public class LinkedListIntersection {
     private static class Node {

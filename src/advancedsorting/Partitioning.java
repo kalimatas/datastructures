@@ -22,29 +22,31 @@ public class Partitioning {
 
         arr.display();
     }
-}
 
+    private static class ArrayPartitioning extends HighArray {
+        ArrayPartitioning(int size) {
+            super(size);
+        }
 
-class ArrayPartitioning extends HighArray {
-    public ArrayPartitioning(int size) {
-        super(size);
-    }
+        void partition(int left, int right, int pivot) {
+            int leftPtr = left - 1;
+            int rightPtr = right + 1;
 
-    void partition(int left, int right, int pivot) {
-        int leftPtr = left - 1;
-        int rightPtr = right + 1;
+            while (true) {
+                while (leftPtr < rightPtr && items[++leftPtr] < pivot)
+                    ; // skip elements
 
-        while (true) {
-            while (leftPtr < rightPtr && items[++leftPtr] < pivot)
-                ; // skip elements
+                while (rightPtr > leftPtr && items[--rightPtr] > pivot)
+                    ; // skip elements
 
-            while (rightPtr > leftPtr && items[--rightPtr] > pivot)
-                ; // skip elements
-
-            if (leftPtr >= rightPtr)
-                break;
-            else
-                swap(leftPtr, rightPtr);
+                if (leftPtr >= rightPtr)
+                    break;
+                else
+                    swap(leftPtr, rightPtr);
+            }
         }
     }
 }
+
+
+
